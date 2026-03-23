@@ -1,0 +1,158 @@
+/* ── IMPORT FONTS ── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+/* ── RESET ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── ROOT ── */
+:root {
+  --acc: #00f5c4; --acc2: #6c63ff; --acc3: #ff6b9d;
+  --bg: #03040a; --surface: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08); --text: #f0f0f0; --muted: #8a8fa8;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #03040a !important;
+  color: #f0f0f0 !important;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── FORCE ALL TEXT VISIBLE ── */
+*, *::before, *::after { color: inherit; }
+h1,h2,h3,h4,h5,h6 { color: #f0f0f0; }
+p { color: #8a8fa8; }
+a { text-decoration: none; color: inherit; }
+strong { color: #f0f0f0; font-weight: 500; }
+
+/* ── INPUTS ── */
+input, textarea, select {
+  color: #f0f0f0 !important;
+  background: rgba(255,255,255,0.06) !important;
+  -webkit-text-fill-color: #f0f0f0 !important;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+input::placeholder, textarea::placeholder {
+  color: #8a8fa8 !important;
+  -webkit-text-fill-color: #8a8fa8 !important;
+  opacity: 1 !important;
+}
+input:-webkit-autofill, textarea:-webkit-autofill {
+  -webkit-text-fill-color: #f0f0f0 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #0d1025 inset !important;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-thumb { background: linear-gradient(#00f5c4,#6c63ff); border-radius: 2px; }
+::selection { background: rgba(0,245,196,0.2); color: #fff; }
+
+/* ── GRID BG ── */
+.grid-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: linear-gradient(rgba(0,245,196,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(0,245,196,0.03) 1px,transparent 1px);
+  background-size: 55px 55px;
+}
+
+/* ── GRADIENT TEXT ── */
+.gradient-text {
+  background: linear-gradient(135deg,#00f5c4 0%,#6c63ff 50%,#ff6b9d 100%);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradShift 4s linear infinite;
+}
+@keyframes gradShift { from{background-position:0%} to{background-position:200%} }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+@keyframes orbF { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,-15px)} }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+@keyframes marqueeAnim { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@keyframes spin { to{transform:rotate(360deg)} }
+@keyframes ringPulse { 0%,100%{transform:scale(1);opacity:0.5} 50%{transform:scale(1.4);opacity:0} }
+@keyframes gradShift { from{background-position:0%} to{background-position:200%} }
+
+/* ── REVEAL — always visible, just animates in ── */
+.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: fadeUp 0.7s ease both;
+}
+.reveal-left {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: fadeUp 0.7s ease both;
+}
+.reveal-scale {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: fadeUp 0.7s ease both;
+}
+
+/* ── MARQUEE ── */
+.marquee-track { display:flex; gap:2.8rem; width:max-content; animation:marqueeAnim 22s linear infinite; }
+
+/* ── RING SPIN ── */
+.ring-spin     { animation: spin 20s linear infinite; }
+.ring-spin-rev { animation: spin 30s linear infinite reverse; }
+
+/* ── SECTION LABEL ── */
+.sec-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem; color: #00f5c4 !important;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem;
+}
+.sec-label::before { content:''; display:block; width:24px; height:1px; background:#00f5c4; flex-shrink:0; }
+
+/* ── GLASS ── */
+.glass {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+/* ── BUTTONS ── */
+.btn-p {
+  background: linear-gradient(135deg,#00f5c4,#6c63ff);
+  color: #000 !important; -webkit-text-fill-color: #000 !important;
+  font-weight: 700; border: none; cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s;
+  display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
+}
+.btn-p:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,245,196,0.28); }
+
+.btn-s {
+  background: transparent; color: #f0f0f0 !important;
+  border: 1px solid rgba(255,255,255,0.1); cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
+}
+.btn-s:hover { border-color: rgba(0,245,196,0.4); background: rgba(0,245,196,0.05); transform: translateY(-2px); }
+
+/* ── SKILL TAG ── */
+.skill-tag { transition: transform 0.2s; }
+.skill-tag:hover { transform: scale(1.06) translateY(-1px); }
+
+/* ── TIMELINE ── */
+.tl-line { position:absolute; left:18px; top:0; bottom:0; width:1px; background:linear-gradient(#00f5c4,#6c63ff,transparent); }
+.tl-dot { position:absolute; left:11px; top:5px; width:14px; height:14px; border-radius:50%; background:linear-gradient(135deg,#00f5c4,#6c63ff); box-shadow:0 0 14px rgba(0,245,196,0.4); }
+.tl-pulse { position:absolute; inset:-4px; border-radius:50%; border:1px solid rgba(0,245,196,0.3); animation:ringPulse 2s ease infinite; }
+
+/* ── CHAT ── */
+@keyframes chatRing { 0%,100%{transform:scale(1);opacity:0.5} 50%{transform:scale(1.12);opacity:0.15} }
+@keyframes bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-7px)} }
+@keyframes msgIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── C-LINK ── */
+.c-link {
+  display:flex; align-items:center; gap:12px; padding:12px 16px; border-radius:12px;
+  color: #f0f0f0 !important; border:1px solid rgba(255,255,255,0.09);
+  background:rgba(255,255,255,0.04); text-decoration:none;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.c-link:hover { border-color:rgba(0,245,196,0.3); transform:translateX(5px); }
